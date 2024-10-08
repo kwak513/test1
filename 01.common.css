@@ -1,0 +1,164 @@
+/* ///////////////////////////////////////////////// */
+/* /////////////////////공통//////////////////////// */
+/* ///////////////////////////////////////////////// */
+/* #writeBtn{display: none !important;} */
+body{
+    margin: 0;
+    user-select: none;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+/* /////////////////////header_nav//////////////////////// */
+.header{
+    width: 100%;
+    background-color: #bab2ac;
+
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+}
+.nav{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+
+    
+}
+.logo{
+    width: 50px;
+    height: 50px;
+    background: url(./front_img/sb_logo.png) no-repeat center / contain;
+
+
+}
+.logo a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+/* /////////////////////main//////////////////////// */
+.main{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    margin-top: 78px;
+}
+.main_banner{
+    width: 100%;
+    height: 100%;
+    background: url(./front_img/mainbanner.jpg) no-repeat -150px / cover;
+}
+.txt1_box{
+    color: #fff;
+    font-size: 35px;
+    font-weight: 900;
+    position: absolute;
+    right: 12%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.txt1_1{font-size: 25px;}
+/* /////////////////////로그인, 회원가입//////////////////////// */
+.container{
+    width: 1000px;
+    margin: 100px auto;
+    padding-top: 100px;
+    /* border: 1px solid; */
+}
+.user_box{
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+
+    font-size: 14px;
+    color: rgb(98, 95, 95);
+}
+/* /////////////////////공지사항 제목//////////////////////// */
+.big_title{
+    font-size: 30px;
+    font-weight: 900;
+}
+.small_title{
+    font-weight: 900;
+}
+/* /////////////////////공지사항 각 줄//////////////////////// */
+.main_board{
+    border-top: 3px solid;
+    border-bottom: 2px solid;
+}
+.list{
+    width: 100%;
+    font-size: 0;
+}
+.list > li{
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    padding: 10px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+.list1{
+    border-bottom: 1px solid gray;
+}
+.list_num{
+    width: 10%;
+}
+.list_title{
+    width: 60%;
+}
+.list_user{width: 10%;}
+.list_date{width: 10%;}
+.list_count{width: 10%;}
+
+/* /////////////////////숫자버튼 페이지//////////////////////// */
+.num_btn_box{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 30px 0;
+    font-size: 14px;
+}
+.num_btn{
+    width: 30px;
+    line-height: 30px;
+}
+.thick_line{
+    border-bottom: 2px solid;
+}
+.num_btn.active,
+.txt_btn.active{
+    background-color: black;
+    color: #fff;
+    border: none ;
+}
+.txt_btn_box{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+.txt_btn{
+    width: 80px;
+    line-height: 30px;
+}

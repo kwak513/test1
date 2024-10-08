@@ -1,0 +1,41 @@
+.login_m_b > input{
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-color: #ddd;
+    outline: none;
+    margin-bottom: 15px;
+}
+.login_m_b > input[type = submit]{
+    background-color: #006633;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+}
+.input_box{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #777;
+    font-size: 0;
+}
+.input_box input{
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    /* border-color: #ddd; */
+    border: none;
+    outline: none;
+
+}
+.input_box input:nth-child(2){
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+}
+.login_container_wrap{
+    height: 680px;
+}

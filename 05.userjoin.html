@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+    <link rel="stylesheet" href="./01.common.css">
+    <link rel="stylesheet" href="./04.login.css">
+    <link rel="stylesheet" href="./05.userjoin.css">
+</head>
+<body>
+<div id="wrap">
+    <div class="header">
+        <div class="nav">
+            <div class="logo"><a href="./01.main_page.html">로고</a></div>
+            <div class="nav_desc"><a href="#">스타벅스 커피</a></div>
+            <div class="nav_desc"><a href="#">메뉴소개</a></div>
+            <div class="nav_desc"><a href="#">스타벅스 오더</a></div>
+            <div class="nav_desc"><a href="./01.main_page.html">커뮤니티</a></div>
+        </div>
+    </div>
+    <div class="login_container_wrap">
+        <div class="login_container">
+            <form action="#">
+                <h1>회원가입</h1>
+                <div class="login_form_main">
+                    <div class="login_m_t">
+                        <div><span>Welcome!</span> 스타벅스 코리아에 오신 것을 환영합니다.</div>
+                    </div>
+                    <div class="login_m_b">
+                        <div class="input_box">
+                            <input type="text" placeholder="아이디" required>
+                            <input type="password" placeholder="비밀번호" required>
+                            <input type="email" placeholder="이메일 주소" required>
+                        </div>
+                        <div class="input_box">
+                            <input type="text" placeholder="이름" required>
+                            <input type="text" placeholder="생년월일 8자리" required maxlength="8">
+                            <input type="text" placeholder="휴대전화번호(- 없이 입력)" required>
+                        </div>
+                        <input type="submit" value="회원가입">
+                        
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="login_footer"></div>
+</div>
+
+<script>
+    let users = [];
+        
+    // user1부터 user29까지의 데이터를 users 배열에 추가
+    for (let i = 1; i <= 29; i++) {
+        users.push({ id: `user${i}`, pw: `password${i}` });
+    }
+
+    $(document).ready(function() {
+        // 폼 제출 처리
+        $('form').on('submit', function(e) {
+            e.preventDefault(); // 기본 폼 제출 방지
+            
+            // 입력된 아이디 가져오기
+            let enteredId = $(this).find('input[placeholder="아이디"]').val().trim();
+            
+            // 중복 아이디 검사
+            let isDuplicate = users.some(function(user) {
+                return user.id === enteredId;
+            });
+
+
+            if (isDuplicate) {
+                alert('이 아이디는 이미 사용 중입니다. 다른 아이디를 입력하세요.');
+            } else {
+                // 아이디가 중복되지 않으면 회원가입 진행
+                alert('회원가입이 완료되었습니다!');
+                window.location.href = './01.main_page.html';
+                // 여기에 AJAX를 통해 폼 데이터를 처리하는 코드 추가 가능
+            }
+        });
+    });
+</script>
+</body>
+</html>

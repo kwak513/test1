@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+    <link rel="stylesheet" href="./01.common.css">
+    <link rel="stylesheet" href="./02.write.css">
+</head>
+<body> 
+    <div id="wrap">
+        <div class="header">
+            <ul class="user_box">
+                <li class="login"><a href="./04.login.html">로그인</a></li>
+                <li class="join"><a href="./05.userjoin.html">회원가입</a></li>
+            </ul>
+            <div class="nav">
+                <div class="logo"><a href="./01.main_page.html">로고</a></div>
+                <div class="nav_desc"><a href="#">스타벅스 커피</a></div>
+                <div class="nav_desc"><a href="#">메뉴소개</a></div>
+                <div class="nav_desc"><a href="#">스타벅스 오더</a></div>
+                <div class="nav_desc"><a href="./01.main_page.html">커뮤니티</a></div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main_banner">
+                <div class="txt1_box">
+                    <div class="txt1"><a href="./01.main_page.html">커뮤니티</a></div>
+                    <div class="txt1_1">COMMUNITY</div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="container" id="container">
+            
+            <div class="big_title">공지사항</div>
+            <p class="small_title">공지사항을 빠르고 정확하게 안내해드립니다.</p>
+            <div class="main_board">
+                <div class="main_board_title main_board_title1">
+                    <div class="mb_title_L mb_title_L1">제목</div>
+                    <input type="text" class="mb_txt mb_txt1" required id="title" readonly>
+                </div>
+                <div class="main_board_title">
+                    <div class="mb_box">
+                        <div class="mb_title_L">글쓴이</div>
+                        <input type="text" class="mb_txt"  required id="user" readonly>
+                    </div>
+                </div>
+                <div class="main_txt_area">
+                    <textarea required id="content" readonly></textarea>
+                </div>
+            </div>
+
+            <div class="txt_btn_box">
+                <div class="txt_btn active" id="submitBtn" style="display: none;">수정</div>
+                <div class="txt_btn active" id="saveBtn" style="display:none;">저장</div>
+                <div class="txt_btn active"><a href="./01.main_page.html">목록</a></div>
+            </div>
+    
+        </div>
+    </div>
+<script>
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const num = urlParams.get('num');
+    const title = decodeURIComponent(urlParams.get('title'));
+    const user = decodeURIComponent(urlParams.get('user'));
+    const date = urlParams.get('date');
+    const count = urlParams.get('count');
+    const txt_area = decodeURIComponent(urlParams.get('txt_area'));
+
+    // HTML에 글 정보 표시
+    $('#title').val(title);
+    $('#user').val(user);
+    $('#content').val(txt_area);
+
+    // 로그인한 사용자 ID 가져오기
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    // 로그인한 사용자와 작성자 비교
+    if (loggedInUser === user) {
+        $('#submitBtn').show(); // '수정' 버튼 표시
+    }
+    // '수정' 버튼 클릭 시
+    $('#submitBtn').click(function() {
+        $('#title').prop('readonly', false); // readonly 해제
+        $('#user').prop('readonly', true); // 작성자는 수정할 수 없으므로 readonly 유지
+        $('#content').prop('readonly', false); // readonly 해제
+        $(this).hide(); // '수정' 버튼 숨기기
+        $('#saveBtn').show(); // '저장' 버튼 표시
+    });
+
+
+    
+    // write.html로 데이터 넘기기
+    // $('#submitBtn').click(function() {
+    //     sessionStorage.setItem('num', num);
+    //     sessionStorage.setItem('title', title);
+    //     sessionStorage.setItem('user', user);
+    //     sessionStorage.setItem('date', date);
+    //     sessionStorage.setItem('count', count);
+    //     sessionStorage.setItem('txt_area', txt_area);
+
+    //     window.location.href = './03.write.html';
+    // });
+
+
+
+    $('#saveBtn').click(function() {
+        const updatedTitle = $('#title').val();
+        const updatedContent = $('#content').val();
+        // 여기에서 업데이트된 내용을 저장하는 로직을 추가하세요.
+        const num = new URLSearchParams(window.location.search).get('num');
+        localStorage.setItem(`post_${num}_title`, updatedTitle);
+        localStorage.setItem(`post_${num}_content`, updatedContent);
+
+        alert("내용이 저장되었습니다!"); // 저장 완료 알림
+
+        $('#title').prop('readonly', true); // readonly 설정
+        $('#content').prop('readonly', true); // readonly 설정
+        $(this).hide(); // '저장' 버튼 숨기기
+        $('#submitBtn').show(); // '수정' 버튼 다시 표시
+    });
+
+});
+
+
+</script>
+</body>
+</html>

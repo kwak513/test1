@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+    <link rel="stylesheet" href="./01.common.css">
+    <link rel="stylesheet" href="./04.login.css">
+    
+</head>
+<body>
+<div id="wrap">
+    <div class="header">
+        <div class="nav">
+            <div class="logo"><a href="./01.main_page.html">로고</a></div>
+            <div class="nav_desc"><a href="#">스타벅스 커피</a></div>
+            <div class="nav_desc"><a href="#">메뉴소개</a></div>
+            <div class="nav_desc"><a href="#">스타벅스 오더</a></div>
+            <div class="nav_desc"><a href="./01.main_page.html">커뮤니티</a></div>
+        </div>
+    </div>
+    <div class="login_container_wrap">
+        <div class="login_container">
+            <form action="#">
+                <h1>로그인</h1>
+                <div class="login_form_main">
+                    <div class="login_m_t">
+                        <div><span>Welcome!</span> 스타벅스 코리아에 오신 것을 환영합니다.</div>
+                    </div>
+                    <div class="login_m_b">
+                        <input type="text" placeholder="아이디를 입력해주세요." required>
+                        <input type="password" placeholder="비밀번호를 입력해주세요." required>
+                        <input type="submit" value="로그인">
+                        <div class="login_warn">* 타 사이트와 비밀번호를 동일하게 사용할 경우 도용의 위험이 있으므로, 정기적인 비밀번호 변경을 해주시길 바랍니다.</div>
+                        <div class="login_warn">* 스타벅스 코리아의 공식 홈페이지는 Internet Explorer 9.0 이상, Chrome, Firefox, Safari 브라우저에 최적화 되어있습니다.</div>
+                        <ul class="user_box_ul">
+                            <li class="user_box_li"><a href="./05.userjoin.html">회원가입</a></li>
+                            <li class="user_box_li">아이디 찾기</li>
+                            <li class="user_box_li">비밀번호 찾기</li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="login_footer"></div>
+</div>
+<script>
+    $(document).ready(function() {
+            let users = [];
+
+            // user1 ~ user29까지의 id와 password를 가진 객체들을 배열에 추가
+            for (let i = 1; i <= 29; i++) {
+                users.push({ id: `user${i}`, pw: `password${i}` });
+            }
+
+            console.log(users);
+
+
+
+            // 로그인 버튼 클릭 시
+            $('form').on('submit', function(e) {
+                e.preventDefault(); // 폼 제출 막기
+
+                // 입력된 값 가져오기
+                let inputId = $('input[type="text"]').val();
+                let inputPw = $('input[type="password"]').val();
+
+                // 로그인 여부 확인
+                let userExists = users.some(function(user) {
+                    return user.id === inputId && user.pw === inputPw;
+                });
+
+                if (userExists) {
+                    alert("로그인 성공!");
+                    // 여기에 로그인 성공 시의 추가 동작을 넣으시면 됩니다.
+                    localStorage.setItem('loggedInUser', inputId);
+                    window.location.href = './01.main_page.html';
+                } else {
+                    alert("아이디 또는 비밀번호 오류입니다. 정확한 아이디 또는 비밀번호를 입력해주시길 바랍니다.");
+                }
+            });
+
+
+        });
+</script>
+</body>
+</html>
